@@ -44,10 +44,11 @@ export default {
     if(request.files !== undefined) {
       const requestImages = request.files as Express.Multer.File[];
       images = requestImages.map(image => ({ path: image.filename }))
-    } 
+    }
     
     const payload = {
-      name, latitude, longitude, about, instructions, opening_hours, open_on_weekend, images
+      name, latitude, longitude, about, instructions, opening_hours, images,
+      open_on_weekend: open_on_weekend === 'true'
     }
 
     const schema = Yup.object().shape({
